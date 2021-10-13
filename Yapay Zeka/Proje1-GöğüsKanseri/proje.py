@@ -162,12 +162,17 @@ plt.show()
 sns.pairplot(X_train_df[corr_features], diag_kind = "kde", markers = "+", hue="target")
 plt.show()
 
+#%% Basic KNN Method
 
-
-
-
-
-
+knn = KNeighborsClassifier(n_neighbors= 2) #defalut değeri 5 tir.
+knn.fit(X_train, Y_train)
+y_pred = knn.predict(X_test)
+cm  = confusion_matrix( Y_test, y_pred)
+acc = accuracy_score(Y_test, y_pred)
+score =knn.score(X_test, Y_test)
+print("Score: ",score)
+print("CM: ",cm)
+print("Basic KNN Acc: ",acc)
 
 
 
