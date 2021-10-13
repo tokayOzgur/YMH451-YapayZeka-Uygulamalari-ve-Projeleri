@@ -103,6 +103,76 @@ skewness (çarpıklık)
 """
 
 
+#%% Outlier
+y=data.target
+x=data.drop(["target"],axis=1) 
+columns = x.columns.tolist()
+
+clf = LocalOutlierFactor()
+y_pred = clf.fit_predict(x) # -1 ve 1
+X_score = clf.negative_outlier_factor_
+
+outlier_score=pd.DataFrame()
+outlier_score["score"] = X_score
+
+# threshold
+threshold = -2.5
+filtre=outlier_score["score"]<threshold
+outlier_index=outlier_score[filtre].index.tolist()
+
+plt.figure()
+plt.scatter(x.iloc[outlier_index,0], x.iloc[outlier_index,1], color="blue", s=50, label = "Outliers")
+plt.scatter(x.iloc[:,0], x.iloc[:,1], color="k", s=3 , label= "Data Points")
+
+radius = (X_score.max() - X_score)/(X_score.max() - X_score.min()) #Normalizasyon işlemi
+outlier_score["raidus"] = radius
+plt.scatter(x.iloc[:,0], x.iloc[:,1], s=1000*radius, edgecolors="r", facecolors="none", label="Outlier Scores")
+plt.legend()#labelların görünmesi için gerekli komut
+plt.show()
+
+#drop outliers
+x = x.drop(outlier_index)
+y = y.drop(outlier_index).values
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
