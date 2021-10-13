@@ -137,21 +137,30 @@ y = y.drop(outlier_index).values
 # %% train test split
 
 test_size=0.3
-X_train, X_test, Y_train, Y_test = train_test_split(x,y,test_size=test_size, random_state = 42)
+X_train, X_test, Y_train, Y_test =  train_test_split(x,y,test_size=test_size, random_state = 42)
 
+#%% 
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
 
+X_train_df = pd.DataFrame(X_train,columns=columns)
+X_train_df_describe = X_train_df.describe()
 
+X_train_df["target"]=Y_train
+#boxplot
+data_melted = pd.melt(X_train_df, id_vars="target",
+                      var_name="features",
+                      value_name="value")
 
+plt.figure()
+sns.boxplot(x="features", y = "value", hue = "target" , data = data_melted)
+plt.xticks(rotation = 90)
+plt.show()
 
-
-
-
-
-
-
-
-
-
+#pair plot
+sns.pairplot(X_train_df[corr_features], diag_kind = "kde", markers = "+", hue="target")
+plt.show()
 
 
 
