@@ -209,6 +209,71 @@ def KNN_Best_Params(x_train,x_test,y_train,y_test):
 grid = KNN_Best_Params(X_train, X_test, Y_train, Y_test)
 
 
+#%% PCA Analysis
+
+#PCA'ye başlamadan önce verimizin scaler etmemiz lazım
+scaler = StandardScaler()
+x_scaled  = scaler.fit_transform(x)
+
+pca = PCA(n_components=2 ) #normalde 30 tane var biz bunu 2'ye düşürmüş olduk
+pca.fit(x_scaled)
+X_reduced_pca = pca.transform(x_scaled)
+pca_data = pd.DataFrame(X_reduced_pca, columns=["p1","p2"])
+pca_data["target"] = y
+sns.scatterplot(x = "p1", y = "p2", hue = "target", data = pca_data)
+plt.title ("PCA : p1 vs p2")
+
+
+X_train_pca, X_test_pca, Y_train_pca, Y_test_pca = train_test_split(X_reduced_pca, y, test_size = test_size, random_state=42)
+
+grid_pca  = KNN_Best_Params(X_train_pca, X_test_pca, Y_train_pca, Y_test_pca)
+
+
+#visualize
+cmap_light = ListedColormap(['orange', 'cornflowerblue'])
+cmap_bold = ListedColormap(['darkorange','darkblue'])
+
+h = .05
+X = X_reduced_pca
+x_min, x_max = X[:,0].min() -1, X[:,0].max() +1
+y_min, y_max = X[:,1].min() -1, X[:,1].max() +1
+xx, yy = np.meshgrid(np.arange(x_min,x_max,h),
+                    np.arange(y_min,y_max,h))
+
+Z = grid_pca.predict(np.c_[xx.ravel(),yy.ravel()])
+
+#Put the result into a color plot
+Z = Z.reshape(xx.shape)
+plt.figure()
+plt.pcolormesh(xx,yy,Z , cmap = cmap_light)
+
+#Plot also the training points
+plt.scatter(X[:,0], X[:,1], c=y, cmap=cmap_bold,
+            edgecolors='k', s =20)
+plt.xlim(xx.min(),xx.max())
+plt.ylim(yy.min(),yy.max())
+plt.title("%i-Class classification (k = %i, weights = '%s')"
+          % (len(np.unique(y)), grid_pca.best_estimator_.n_neighbors, grid_pca.best_estimator_.weights))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
