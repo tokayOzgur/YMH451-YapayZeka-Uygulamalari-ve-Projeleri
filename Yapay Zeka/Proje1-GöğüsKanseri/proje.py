@@ -298,6 +298,7 @@ plt.ylim(yy.min(),yy.max())
 plt.title("%i-Class classification (k = %i, weights = '%s')"
           % (len(np.unique(y)), grid_nca.best_estimator_.n_neighbors, grid_nca.best_estimator_.weights))
 
+#%% son
 
 
 
