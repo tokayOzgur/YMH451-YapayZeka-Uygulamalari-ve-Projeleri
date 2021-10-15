@@ -174,17 +174,39 @@ print("Score: ",score)
 print("CM: ",cm)
 print("Basic KNN Acc: ",acc)
 
+#%% Choose best parameters
+def KNN_Best_Params(x_train,x_test,y_train,y_test):
+    k_range = list(range(1,31))
+    weight_options = ["uniform","distance"]
+    print()
+    param_grid = dict(n_neighbors = k_range, weights = weight_options)
+    
+    knn = KNeighborsClassifier()
+    grid = GridSearchCV(knn, param_grid, cv = 10, scoring = "accuracy")
+    grid.fit(x_train, y_train)
+    
+    print("Best training score : {} with parameters {}".format(grid.best_score_, grid.best_params_))
+    print()
+    
+    knn = KNeighborsClassifier(**grid.best_params_)
+    knn.fit(x_train, y_train)
+    
+    y_pred_test = knn.predict(x_test)
+    y_pred_train = knn.predict(x_train)
 
+    cm_test = confusion_matrix(y_test, y_pred_test)
+    cm_train = confusion_matrix(y_train, y_pred_train)
 
+    acc_test = accuracy_score(y_test, y_pred_test)
+    acc_train = accuracy_score(y_train, y_pred_train)
+    print("Test Score : {}, Train Score : {}".format(acc_test, acc_train))
+    print()
+    print("CM Test : ",cm_test)
+    print("CM Train : ",cm_train)
+    
+    return grid
 
-
-
-
-
-
-
-
-
+grid = KNN_Best_Params(X_train, X_test, Y_train, Y_test)
 
 
 
