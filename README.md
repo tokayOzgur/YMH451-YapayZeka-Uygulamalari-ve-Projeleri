@@ -1,2 +1,3 @@
-# YMH451-YapayZeka-Uygulamalari-ve-Projeleri
- Yapay Zeka Dersinde ödev olarak verilmiş ve proje yönelik Python çalışmalarım.
+# YMH451 Yapay Zeka Uygulamalari ve Projeleri 
+
+2021 yılı içerisinde görmüş olduğum Yapay Zeka dersinde ödev olarak verilmiş ve projeye yönelik uyguladığım Python çalışmalarım.
