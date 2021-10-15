@@ -255,7 +255,48 @@ plt.ylim(yy.min(),yy.max())
 plt.title("%i-Class classification (k = %i, weights = '%s')"
           % (len(np.unique(y)), grid_pca.best_estimator_.n_neighbors, grid_pca.best_estimator_.weights))
 
+#%% NCA Analysis
 
+nca = NeighborhoodComponentsAnalysis(n_components=2, random_state=42 )
+nca.fit(x_scaled, y)
+X_reduced_nca = nca.transform(x_scaled)
+nca_data = pd.DataFrame(X_reduced_nca, columns = ["p1","p2"])
+nca_data ["target"] = y
+sns.scatterplot(x = "p1", y ="p2", hue = "target", data = nca_data) 
+plt.title("NCA : p1 vs p2 ")
+
+
+
+X_train_nca, X_test_nca, Y_train_nca, Y_test_nca = train_test_split(X_reduced_nca, y, test_size = test_size, random_state=42)
+
+grid_nca  = KNN_Best_Params(X_train_nca, X_test_nca, Y_train_nca, Y_test_nca)
+
+
+#visualize
+cmap_light = ListedColormap(['orange', 'cornflowerblue'])
+cmap_bold = ListedColormap(['darkorange','darkblue'])
+
+h = .2 #step size in the mesh
+X = X_reduced_nca
+x_min, x_max = X[:,0].min() -1, X[:,0].max() +1
+y_min, y_max = X[:,1].min() -1, X[:,1].max() +1
+xx, yy = np.meshgrid(np.arange(x_min,x_max,h),
+                    np.arange(y_min,y_max,h))
+
+Z = grid_nca.predict(np.c_[xx.ravel(),yy.ravel()])
+
+#Put the result into a color plot
+Z = Z.reshape(xx.shape)
+plt.figure()
+plt.pcolormesh(xx,yy,Z , cmap = cmap_light)
+
+#Plot also the training points
+plt.scatter(X[:,0], X[:,1], c=y, cmap=cmap_bold,
+            edgecolors='k', s =20)
+plt.xlim(xx.min(),xx.max())
+plt.ylim(yy.min(),yy.max())
+plt.title("%i-Class classification (k = %i, weights = '%s')"
+          % (len(np.unique(y)), grid_nca.best_estimator_.n_neighbors, grid_nca.best_estimator_.weights))
 
 
 
