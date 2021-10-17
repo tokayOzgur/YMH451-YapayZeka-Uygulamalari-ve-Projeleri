@@ -42,7 +42,7 @@ Eğer rengi yeşil değilse "Tebrikler, yeşil olmayan uzaylıya ateş ettiğini
 """
 
 uzayli_rengi = str.upper(input("uzayli rengini girin : "))
-print(uzayli_rengi)
+# print(uzayli_rengi)
 if (uzayli_rengi =="YEŞIL" or uzayli_rengi =="YEŞİL" or uzayli_rengi =="YESIL" ):
     print("Tebrikler, yesil uzaylıya ateş ettiğiniz için 5 puan kazandınız")
 
