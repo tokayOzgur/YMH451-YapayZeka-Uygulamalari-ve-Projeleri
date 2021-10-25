@@ -1,28 +1,30 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun Oct 17 12:26:29 2021
+Created on Sun Oct 24 12:26:29 2021
 
-@author: baris
+@author: tokayOzgur
 """
-
+#%% Uyg1
 #Kullanıcıdan integer türünde bir değer isteyiniz. İstemiş olduğunuz bu değerin çarpım tablosu
 #değerlerini gösteren kodu for döngüsü ile gerçekleştiriniz (10p).
 
 sayi = int(input("Bir sayi girin : "))
-for i in range(11):
+for i in range(0,11):
     print(i*sayi)
     
+#%% Uyg2
 #Girilen bir sayının kaç basamaklı olduğunu belirleyen programı while döngüsü ile gerçekleştiriniz (10p)
 
 
 a = int(input("Bir sayı girin basamak : "))
+a=abs(a)
 say = 0
 while a > 0:
     a = a // 10
     say = say + 1
 print("bu kadar basamaklı : ",say)
 
-
+#%% Uyg3
 #Aşağıda bir listeye ait sayısal değerler verilmiştir. 
 #sayısalDeğerler = [12, 15, 32, 42, 55, 75, 122, 132, 150, 180, 200]
 #Bu listedeki 5’e bölünen sayıları çıktı olarak veren programı hem for hem de while döngüsü ile 
@@ -41,7 +43,7 @@ while(index <len(sayısalDeğerler)):
         print(sayısalDeğerler[index])
     index+=1
     
-    
+#%% Uyg4
 #Kullanıcıdan 3 adet (a, b ve c) değer alınız. a (dahil) ve b (dahil) arasında kaç sayının c’ye 
 #bölünebildiğini belirleyen programı yazınız (20p).
 #Örnek: a = 20, b = 40, c = 5 ise Çıktı: 5 
@@ -62,14 +64,14 @@ elif(birincisayi>ikincisayi):
             
 print(sayac)
     
-
+#%% Uyg5
 #diğer soru
 
 
 for i in range(1,100):
     print(i ,"-",(100-i))
     
-    
+#%% Uyg6
 #son soru Kullanıcıdan bir IP adresi isteyiniz. İstediğiniz bu IP adresinden sonraki 5 değeri çıktı olarak 
 #veren programı yazınız (30p)
 
@@ -80,10 +82,10 @@ for x in range(4):
     if (gelenip<0):
         print("ıp değeri 0 dan küçük sayı olamaz.")
         break
-    #ornekıp.append(gelenip)
+
     ornekıp.insert(x, gelenip)
 sayac =0   
-while sayac<4:
+while sayac<5:
     ornekıp[3]+=1
     if(ornekıp[3]>255):
         ornekıp[3]=0
@@ -98,25 +100,10 @@ while sayac<4:
         print("ip nizin ilk indeksi 255 ten büyük olamaz")
         break
 
-        
+
     sayac+=1
     print(ornekıp)
     
-        
-
-    
-        
-    
-
-
-
-
-
-
-
-
-
-
 
 
 
