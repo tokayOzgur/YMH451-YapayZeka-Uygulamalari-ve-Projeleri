@@ -2,7 +2,7 @@
 """
 Created on Sun Oct 17 21:00:17 2021
 
-@author: azder
+@author: Özgür Tokay
 """
 
 #%% Uyg-1
@@ -17,15 +17,15 @@ val2 = int(input("Değeri giriniz: "))
 val3 = int(input("Değeri giriniz: "))
 toplam = val1+val2+val3
 # Üç açısının ölçüsü de 90° den küçük olan üçgenlere dar açılıüçgen denir.
-if(toplam<=180 and val1<90 and val2<90 and val3<90):
+if(toplam<=180 and (val1<90 and val2<90 and val3<90)):
     print("Dar Açılı Üçgen")
     
 # Bir açısının ölçüsü 90° ye eşit olan üçgenlere denir.
-elif(toplam<=180 and val1==90 or val2==90 or val3==90):
+elif(toplam<=180 and (val1==90 or val2==90 or val3==90)):
     print("Dik Açılı Üçgen")
 
 # Bir açısının ölçüsü 90° den büyük olan üçgenlere denir.
-elif( toplam<=180 and val1>90 or val2>90 or val3>90):
+elif( toplam<181 and (val1>90 or val2>90 or val3>90)):
     print("Geniş Açılı Üçgen")
 
 else:
@@ -59,13 +59,16 @@ c) Eğer uzaylı rengi kırmız ise "Tebrikler, kırmızı uzaylıya ateş etti�
 şeklinde çıktı veren programı yazınız.
 """
 
-uzayli_rengii = str.upper(input("uzayli rengini girin : "))
+uzayli_rengi = str.upper(input("uzayli rengini girin : "))
 if (uzayli_rengi =="YEŞIL" or uzayli_rengi =="YEŞİL" or uzayli_rengi =="YESIL"):
     print("Tebrikler, yesil uzaylıya ateş ettiğiniz için 5 puan kazand?n?z")
 elif (uzayli_rengi =="KIRMIZI"):
     print("Tebrikler, kırmızi uzaylıya ateş ettiğiniz için 15 puan kazandınız")
 elif (uzayli_rengi =="SARI"):
     print("Tebrikler, sarı uzaylıya ateş ettiğiniz için 10 puan kazandınız")
+else:
+    print("Yok öyle şey.")
+    
     
 #%% Uyg-4
 """
