@@ -27,7 +27,7 @@ X = sc.fit_transform(X)
 
 #eğitim ve test verilerinin hazırlanması
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2)
+X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.4)
 
 #çıktı değerlerinin kategorileştirilmesi
 from tensorflow.keras.utils import to_categorical

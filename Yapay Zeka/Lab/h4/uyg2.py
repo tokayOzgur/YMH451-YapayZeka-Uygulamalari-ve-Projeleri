@@ -3,7 +3,7 @@
 #%% YSA ile cep telefonu fiyatlarının artışının belirlenmesi
 
 #kütüphanlerin yüklenmesi
-import numpy as py
+import numpy as np
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 
